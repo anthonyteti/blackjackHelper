@@ -32,7 +32,7 @@ Make sure you have Python installed on your machine. You can download Python fro
 3. Run the application:
 
    ```bash
-   python blackjack_helper.py
+   python main.py
    ```
 
 ## How to Use
