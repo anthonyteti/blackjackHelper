@@ -2,7 +2,29 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 class BlackjackStrategyGuide:
+    """
+    A class that represents a Blackjack Strategy Guide.
+
+    Attributes:
+    - master: The master tkinter window.
+    - card_values: A list of card values.
+    - player_hand_label: A label for the player's hand.
+    - player_hand_frame: A frame for the player's hand.
+    - player_hand_comboboxes: A list of comboboxes for the player's hand.
+    - add_card_button: A button to add a card to the player's hand.
+    - dealer_upcard_label: A label for the dealer's upcard.
+    - dealer_upcard: A string variable for the dealer's upcard.
+    - dealer_upcard_combobox: A combobox for the dealer's upcard.
+    - submit_button: A button to get a recommendation.
+    """
+
     def __init__(self, master):
+        """
+        Initializes a new instance of the BlackjackStrategyGuide class.
+
+        Parameters:
+        - master: The master tkinter window.
+        """
         self.master = master
         self.master.title("Blackjack Strategy Guide")
 
@@ -35,12 +57,18 @@ class BlackjackStrategyGuide:
         self.submit_button.pack(pady=10)
 
     def add_card_combobox(self):
+        """
+        Adds a combobox for a card to the player's hand.
+        """
         card_var = tk.StringVar()
         combobox = ttk.Combobox(self.player_hand_frame, textvariable=card_var, values=self.card_values, state="readonly", font=('Helvetica', 12))
         combobox.pack(pady=5)
         self.player_hand_comboboxes.append((combobox, card_var))
 
     def get_recommendation(self):
+        """
+        Gets a recommendation based on the player's hand and the dealer's upcard.
+        """
         player_hand = [card_var.get() for _, card_var in self.player_hand_comboboxes if card_var.get()]
         dealer_upcard = self.dealer_upcard.get()
 
@@ -53,6 +81,16 @@ class BlackjackStrategyGuide:
 
     @staticmethod
     def get_basic_strategy_recommendation(player_hand, dealer_upcard):
+        """
+        Gets a basic strategy recommendation based on the player's hand and the dealer's upcard.
+
+        Parameters:
+        - player_hand: A list of player's hand cards.
+        - dealer_upcard: The dealer's upcard.
+
+        Returns:
+        - The basic strategy recommendation.
+        """
         # Convert input to uppercase for case-insensitivity
         player_hand = [card.strip().upper() for card in player_hand]
         dealer_upcard = dealer_upcard.strip().upper()
